@@ -105,5 +105,47 @@
     <ClCompile Include="无重复字符的最长字串.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="寻找两个正序数组的中位数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="最长回文子串.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Z字形变换.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="整数反转.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="字符串转换整数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="回文数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="正则表达式匹配.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="盛最多水的容器.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="整数转罗马数字.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="罗马数字转整数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="最长公共前缀.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="三数之和.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="最接近的三数之和.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="电话号码的字母组合.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

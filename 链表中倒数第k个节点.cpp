@@ -3,11 +3,13 @@
 #include<iostream>
 #include<stack>
 using namespace std;
-class ListNode {
-public:
-	int val;
-	ListNode* next;
-	ListNode(int x):val(x),next(nullptr){}
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 /*借助栈的特性*/
 //class Solution {
@@ -30,30 +32,44 @@ public:
 //	}
 //};
 /*递归+回溯思想将链表反转
-回溯是在递归函数的调用后进行的操作。
-和题意不符合，题目要求返回的链表还是正序输出的*/
-class Solution {
+回溯是在递归函数的调用后进行的操作。*/
+class Solution
+{
 public:
-	ListNode* getKthFromEnd(ListNode* head, int k) {
-		auto n = inverse(head);
-		ListNode* node=n;
-		while (k>0)
-		{
-			n = n->next;
-			k--;
-			node = n;
-		}
-		return node;
-	}
-	ListNode* inverse(ListNode* head)
-	{
-		if (!head||!head->next)//
-			return head;
-		ListNode* n=inverse(head->next);//递归，一直到倒数第1个节点结束,结束时n为最后一个节点
-		head->next->next = head; //head为倒数第2个节点
-		head->next = nullptr;
-		return n;
-	}
+    /*
+    删除倒数第n个结点
+    递归+回溯
+    */
+    ListNode *removeNthFromEnd(ListNode *head, int n)
+    {
+        if (!head->next) //如果只有一个结点,返回空指针
+            return nullptr;
+        ListNode *cur = new ListNode(0, head); //记录头结点的值
+        reverseNode(cur, n);
+        return cur->next;
+    }
+    /*回溯*/
+    ListNode *reverseNode(ListNode *cur, int &n)
+    {
+        //记住一般是如果结点不存在，直接返回(不是子节点！！)
+        if (!cur)
+            return nullptr;
+        else
+        {
+            ListNode *pre = reverseNode(cur->next, n);
+            if (n == 0)
+            {
+                if (pre->next)
+                    cur->next = pre->next;
+                else
+                    cur->next = nullptr;
+                n--;
+                return cur;
+            }
+            n--;
+            return cur;
+        }
+    }
 };
 int main()
 {
