@@ -1,6 +1,7 @@
 //给你一个链表数组，每个链表都已经按升序排列
 //请你将所有的链表合并到一个升序链表中，返回合并后的链表
 #include <vector>
+#include <queue>
 using namespace std;
 struct ListNode
 {
@@ -122,7 +123,8 @@ public:
         return merge(lists, 0, size);
     }
 };
-/*使用优先队列合并*/
+/*使用优先队列合并
+优先队列具有队列的所有特性，包括队列的基本操作，并在此基础上添加了一个内部的一个排序*/
 class Solution
 {
 public:
@@ -130,30 +132,29 @@ public:
     {
         int val;
         ListNode *ptr;
-        bool operator<(const Status &rhs) const
+        bool operator<(const Status &rhs) const 
         {
-            return val > rhs.val;
+            return val>rhs.val;//这里是为了配合优先级队列，先找到最大的，放进去
         }
     };
-
+    //优先级队列可以理解为栈，大的先进，但是后出。最后的结果类似从小到大排序的栈，栈顶是最小值
     priority_queue<Status> q;
-
     ListNode *mergeKLists(vector<ListNode *> &lists)
     {
-        for (auto node : lists)
+        for (auto x : lists)
         {
-            if (node)
-                q.push({node->val, node});
+            if (x)
+                q.push({x->val, x});//struct结构体依次赋值，如果是class类，需要构造函数
         }
-        ListNode head, *tail = &head;
+        ListNode head,*tail=&head;
         while (!q.empty())
         {
-            auto f = q.top();
+            Status n=q.top();
             q.pop();
-            tail->next = f.ptr;
-            tail = tail->next;
-            if (f.ptr->next)
-                q.push({f.ptr->next->val, f.ptr->next});
+            tail->next=n.ptr;
+            tail=tail->next;
+            if(n.ptr->next)
+                q.push({n.ptr->next->val,n.ptr->next});
         }
         return head.next;
     }
