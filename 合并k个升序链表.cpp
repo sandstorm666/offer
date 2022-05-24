@@ -132,6 +132,7 @@ public:
     {
         int val;
         ListNode *ptr;
+        //形参必须是const成员
         bool operator<(const Status &rhs) const 
         {
             return val>rhs.val;//这里是为了配合优先级队列，先找到最大的，放进去
