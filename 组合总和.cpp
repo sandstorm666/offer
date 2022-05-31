@@ -21,15 +21,15 @@ public:
     {
         vector<vector<int>> vv;
         queue<vector<int>> q;
-        queue<pair<int,int>> Sum;//存和和起点id
+        queue<pair<int, int>> Sum; //存和和起点id
         for (size_t i = 0; i < candidates.size(); ++i)
         {
             if (candidates[i] < target)
             {
                 q.push({candidates[i]});
-                Sum.push({candidates[i],i});
+                Sum.push({candidates[i], i});
             }
-            else if(candidates[i]==target)
+            else if (candidates[i] == target)
             {
                 vv.push_back({candidates[i]});
             }
@@ -40,7 +40,7 @@ public:
             for (size_t i = 0; i < size; ++i)
             {
                 auto x = q.front();
-                auto [s,begin] = Sum.front();
+                auto [s, begin] = Sum.front();
                 q.pop();
                 Sum.pop();
                 for (size_t j = begin; j < candidates.size(); ++j)
@@ -58,7 +58,7 @@ public:
                     {
                         x.push_back(candidates[j]);
                         q.push(x);
-                        Sum.push({s + candidates[j],j});
+                        Sum.push({s + candidates[j], j});
                         x.pop_back();
                     }
                 }
@@ -72,54 +72,50 @@ public:
 因为递归使用的是从当前idx开始的遍历累加，如[2,3,6,7]
 即可以出现2，2，3，但是3不会出现2，因为有前提条件，数组中每个元素互不相同
 前面的数，一旦使用了后面的数，则不能使用前面的数*/
-class Solution1
+class Solution
 {
 public:
-    void dfs(vector<int> &candidates, int target, vector<vector<int>> &ans, vector<int> &combine, int idx)
-    {
-        if (idx == candidates.size())
-        {
-            return;
-        }
-        if (target == 0)
-        {
-            ans.emplace_back(combine);
-            return;
-        }
-        // 直接跳过
-        dfs(candidates, target, ans, combine, idx + 1); //选择不用，跳过第idx个数，
-        // 选择当前数
-        if (target - candidates[idx] >= 0)
-        {
-            combine.emplace_back(candidates[idx]);
-            dfs(candidates, target - candidates[idx], ans, combine, idx);
-            combine.pop_back();
-        }
-    }
-
     vector<vector<int>> combinationSum(vector<int> &candidates, int target)
     {
         vector<vector<int>> ans;
-        vector<int> combine;
-        dfs(candidates, target, ans, combine, 0);
+        vector<int> combines;
+        dfs(ans, candidates, combines, target, 0);
         return ans;
+    }
+    void dfs(vector<vector<int>> &ans, vector<int> &candidates, vector<int> &combines, int target, int idx)
+    {
+        if (idx == candidates.size()) //索引越界，直接返回
+            return;
+        if (target == 0)
+        {
+            ans.push_back(combines);
+            return;
+        }
+        if (target - candidates[idx] >= 0)
+        {
+            combines.emplace_back(candidates[idx]);
+            dfs(ans, candidates, combines, target - candidates[idx], idx); //添加当前id的值
+            combines.pop_back();
+        }
+        dfs(ans, candidates, combines, target, idx + 1); //添加idx+1的值,跳过idx(不添加当前idx的值)
+        //感觉这里比较巧妙，不用在插入值，因为下一步的插入当前id的值，会执行插入操作
     }
 };
 int main()
 {
-    vector<int> candidates{4,7,5,6};
+    vector<int> candidates{4, 7, 5, 6};
     int target = 16;
     Solution plan;
     auto x = plan.combinationSum(candidates, target);
     for (size_t i = 0; i < x.size(); ++i)
     {
-        for ( auto j:x[i])
+        for (auto j : x[i])
         {
-            cout<<" j  = "<<j<<endl; 
+            cout << " j  = " << j << endl;
         }
-        cout<<endl;
+        cout << endl;
     }
-    
+
     return 0;
 }
 
