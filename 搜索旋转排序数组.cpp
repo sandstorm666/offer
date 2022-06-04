@@ -51,9 +51,6 @@ public:
         }
         while (begin <= end) //这里不加等号，则循环结束时，需要单独判断一下，能不能加等号，需要斟酌一下
         {
-            cout << "binary" << endl;
-            cout << "begin = " << begin << endl;
-            cout << "end = " << end << endl;
             int mid = begin + (end - begin) / 2;
             if (nums[mid] == target)
                 return mid;
