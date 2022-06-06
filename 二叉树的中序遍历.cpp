@@ -21,16 +21,41 @@ public:
     {
         if (!root)
             return;
-        if (root->left)
-            middle(root->left);
+        middle(root->left);
         //只需要插入一次值，因为每个结点都会进入一次递归函数
-        v.push_back(root->val);//递归函数后插入,这样会在递归函数返回最上层后，最上层先插入，最内层最后插入
-        if (root->right)
-            middle(root->right);
+        v.push_back(root->val); //递归函数后插入,这样会在递归函数返回最上层后，最上层先插入，最内层最后插入
+        middle(root->right);
     }
     vector<int> inorderTraversal(TreeNode *root)
     {
         middle(root);
         return v;
+    }
+};
+#include <stack>
+/*迭代
+方法一的递归函数我们也可以用迭代的方式实现，两种方式是等价的，
+区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，
+其他都相同，具体实现可以看下面的代码。*/
+class Solution
+{
+public:
+    vector<int> inorderTraversal(TreeNode *root)
+    {
+        vector<int> res;
+        stack<TreeNode *> stk;
+        while (root != nullptr || !stk.empty())
+        {
+            while (root != nullptr)
+            {
+                stk.push(root);
+                root = root->left;
+            }
+            root = stk.top();
+            stk.pop();
+            res.push_back(root->val);
+            root = root->right;
+        }
+        return res;
     }
 };
