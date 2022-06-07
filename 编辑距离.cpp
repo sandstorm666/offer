@@ -44,7 +44,7 @@ public:
                 int change = dp[i - 1][j - 1];//对word1修改
                 if (word1[i - 1] != word2[j - 1])//矩阵的下标比字符串的下标大1
                     change += 1;
-                dp[i][j]=min(add,min(change,del));
+                dp[i][j]=min({add,change,del});//连续取极值，{}
             }
         }
         return dp[m][n];

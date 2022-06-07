@@ -23,9 +23,9 @@ using namespace std;
 /*排序数组的查找问题首先考虑使用二分法解决，其可将遍历法的线性级别时间复杂度降低至对数级别。
 * 初始化： 声明 i, j 双指针分别指向 numsnums 数组左右两端；
 循环二分： 设 m = (i + j) / 2m=(i+j)/2 为每次二分的中点（ "/" 代表向下取整除法，因此恒有 i \leq m < ji≤m<j ），可分为以下三种情况：
-当 nums[m] > nums[j]nums[m]>nums[j] 时： mm 一定在 左排序数组 中，即旋转点 xx 一定在 [m + 1, j][m+1,j] 闭区间内，因此执行 i = m + 1i=m+1；
-当 nums[m] < nums[j]nums[m]<nums[j] 时： mm 一定在 右排序数组 中，即旋转点 xx 一定在[i, m][i,m] 闭区间内，因此执行 j = mj=m；
-当 nums[m] = nums[j]nums[m]=nums[j] 时： 无法判断 mm 在哪个排序数组中，即无法判断旋转点 xx 在 [i, m][i,m] 还是 [m + 1, j][m+1,j] 区间中。解决方案： 执行 j = j - 1j=j−1 缩小判断范围。
+当 nums[m] > nums[j]nums[m]>nums[j] 时： m 一定在 左排序数组 中，即旋转点x一定在 [m + 1, j][m+1,j] 闭区间内，因此执行 i = m + 1=m+1；
+当 nums[m] < nums[j]nums[m]<nums[j] 时： m 一定在 右排序数组 中，即旋转点x一定在[i, m][i,m] 闭区间内，因此执行 j = m=m；
+当 nums[m] = nums[j]nums[m]=nums[j] 时： 无法判断 m 在哪个排序数组中，即无法判断旋转点x在 [i, m][i,m] 还是 [m + 1, j][m+1,j] 区间中。解决方案： 执行 j = j - 1j=j−1 缩小判断范围。
 */
 class Solution {
 public:
