@@ -55,7 +55,7 @@ int main()
 {
 	//string s = "words and 987";
 	string s = "-91283472332";
-	string s ="   -42";
+	string s ="-42";
 	Solution plan;
 	auto n = plan.myAtoi(s);
 	cout << "n = " << n << endl;
