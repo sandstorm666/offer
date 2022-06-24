@@ -74,7 +74,7 @@ private:
 public:
     bool canFinish(int numCourses, vector<vector<int>> &prerequisites)
     {
-
+        //resize的注意点，当n>容器现在的size时，resize(n)只会对多的内存地址初始化 即大于size的部分
         edges.resize(numCourses);
         inedges.resize(numCourses);
         for (const auto &info : prerequisites)
