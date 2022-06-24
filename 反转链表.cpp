@@ -37,10 +37,12 @@ public:
 class Solution {
 public:
 	ListNode* reverseList(ListNode* head) {
-		//回溯思想
+		// 回溯思想
 		if (!head || !head->next) {//节点不存在
 			return head;
 		}
+		// 这里head代表上一个节点，head->代表下一个节点，
+		// newHead代表最后一个节点，并且每次返回时，值没变，所以一直都是最后一个节点
 		ListNode* newHead = reverseList(head->next);
 		head->next->next = head;
 		head->next = nullptr;
