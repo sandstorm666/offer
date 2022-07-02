@@ -7,7 +7,7 @@ using namespace std;
 从右上角(0,n-1)开始搜索，以matrix的左下角为右下角，(x,y)为右上角的矩阵进行搜索
 如果matrix[x,y]=target,说明搜索完成
 如果matrix[x,y]>target,由于每一列的元素都是升序排列，那么在当前的搜索矩阵中，所有第y列的元素都是大于target的，即y-1
-如果matrix[x,y]<target,由于每一行的元素都是升序排列，那么在当前的搜索矩阵中，所有第x行的元素都是小于target的，因此x+1
+如果matrix[x,y]<target,由于每一行的元素都是升序排列，那么在当前的搜索矩阵中，所有第x行的元素都是小于target的，即x+1
 */
 class Solution
 {
