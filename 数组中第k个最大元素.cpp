@@ -4,7 +4,10 @@
 using namespace std;
 /*第一眼感觉就是考排序*/
 
-/*快速排序*/
+/*快速排序
+快速排序注意while内也有一次swap，将一组元素交换；
+循环外也有一次swap，将key放在应该在的位置上。
+key的选择也有讲究，选择最左边的元素，则需要从最右边开始查找*/
 class Solution
 {
 public:
@@ -58,11 +61,13 @@ public:
 i节点的左子节点的下标为2*i+1；
 i节点的右子节点的下标为2*i+2;
 最后的父节点索引为n/2 - 1。n为最大的下标
+
+维护堆的性质时是从begin维护到end,
 */
 class Solution
 {
 public:
-    //维护大根堆的性质
+    //维护大根堆的性质，注意形参是begin和end,这里的end是n-1
     void heapify(vector<int> &nums, int begin, int end)
     {
         while (begin <= end)
@@ -81,13 +86,13 @@ public:
                 begin = maxElem;
             }
             else
-                break;//维护堆性质时，注意退出，不然容易形成死循环
+                break; //维护堆性质时，注意退出，不然容易形成死循环
         }
     }
-    // 构建大根堆
+    // 构建大根堆 size也是n-1
     void buildHeap(vector<int> &nums, int size)
     {
-        //从最后一个父节点开始，依次向前构建
+        //从最后一个具有孩子的父节点开始，依次向前构建
         for (int i = size / 2; i >= 0; --i)
         {
             heapify(nums, i, size);

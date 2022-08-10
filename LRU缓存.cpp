@@ -45,7 +45,7 @@ public:
         if (!cache.count(key))
             return -1;
         DListNode *node = cache[key];
-        //cout<<"node->val = "<<node->val<<endl;
+        // cout<<"node->val = "<<node->val<<endl;
         moveToHead(node);
         return node->val;
     }
@@ -61,7 +61,7 @@ public:
             ++size;
             if (size > capacity)
             {
-                DListNode* temp =removeTail();
+                DListNode *temp = removeTail();
                 cache.erase(temp->key);
                 delete temp;
                 --size;
@@ -98,10 +98,10 @@ public:
             node->next->prev = node->prev;
         }
     }
-    // 删除尾节点
-    DListNode* removeTail()
+    // 删除尾节点,需要有个返回值，因为需要释放内存
+    DListNode *removeTail()
     {
-        DListNode* temp=tail->prev;
+        DListNode *temp = tail->prev;
         removeNode(temp);
         return temp;
     }
@@ -111,13 +111,13 @@ int main()
     LRUCache cache(2);
     cache.put(1, 1);
     cache.put(2, 2);
-    cout<<cache.get(1)<<endl;
+    cout << cache.get(1) << endl;
     cache.put(3, 3);
-    cout<<cache.get(2)<<endl;
-    cache.put(4,4);
-    cout<<cache.get(1)<<endl;
-    cout<<cache.get(3)<<endl;
-    cout<<cache.get(4)<<endl;
-    cout <<111111111<<endl; 
+    cout << cache.get(2) << endl;
+    cache.put(4, 4);
+    cout << cache.get(1) << endl;
+    cout << cache.get(3) << endl;
+    cout << cache.get(4) << endl;
+    cout << 111111111 << endl;
     return 0;
 }
