@@ -40,11 +40,12 @@ public:
 像环形链表1的快慢指针方法，无法确定入环点。
 最近的数学思维很固化，感觉还是得动笔写一写
 假设直道长度为a，慢指针在环内走了b长度与走了n圈的快指针相遇，环内剩余长度为c
-慢：a+b，a+n(b+c)+b ：快
+慢：a+b，快：a+n(b+c)+b
 同时快=2慢，a+n(b+c)+b=2(a+b)
 a=(n-1)b+nc;
-当两者第一相遇时,n=1
+当两者第一次相遇时,n=1
 a=c;即slow指针没走完的长度
+此时将一个指针从头开始和慢指针一样的速度跑，两者相遇的地方就是入环节点
 */
 class Solution
 {
@@ -52,6 +53,7 @@ public:
     ListNode *detectCycle(ListNode *head)
     {
         ListNode *fast = head, *slow = head;
+        // 注意判断条件，快慢指针只需要判断快指针相关的内容就可以了。
         while (fast && fast->next)
         {
             fast = fast->next->next;

@@ -23,7 +23,7 @@ public:
         for (size_t i = k; i < length; i++)
         {
             q.emplace(nums[i], i);
-            if (q.top().second <= i - k)
+            if (q.top().second <= i - k) //最大值的下标超出范围
                 q.pop();
             ans.push_back(q.top().first);
         }
@@ -31,8 +31,11 @@ public:
     }
 };
 
-/*单调队列
-这种问题，记录下标更管用*/
+/*单调队列与单调栈相比是更容易拿到头尾元素。单调栈每次智能拿到栈顶元素
+这种问题，记录下标更管用
+单调队列先遍历k个初始化队列，然后从第k个开始依次往后遍历，注意内层还有双个单独循环，外层是一个循环
+内层第一个循环维护队列的性质从大到小排列，第二个开始检查窗口有没有过期。
+*/
 class Solution
 {
 public:
@@ -40,7 +43,7 @@ public:
     {
         int n = nums.size();
         vector<int> ans;
-        // 从前往后将下标值按照从大到小排列
+        // 从前往后将下标值按照元素从大到小排列
         deque<int> q;
         for (int i = 0; i < k; i++)
         {

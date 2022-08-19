@@ -64,14 +64,15 @@ public:
     {
         if (!root)
             return 0;
-        int maxLeft=max(maxGain(root->left),0);
-        int maxRight=max(maxGain(root->right),0);//递归到叶子节点，然后开始回溯
-        int price=root->val+maxLeft+maxRight;
-        //maxSum和返回值的区别在哪？maxSum代表最大路径和，返回值仅代表到当前节点的贡献值
-        //maxSum包含两个子节点的贡献加本身，返回值仅包含自身和最大的子节点
-        maxSum=max(maxSum,price);//连续数字求最值,用{}
+        int maxLeft = max(maxGain(root->left), 0);
+        int maxRight = max(maxGain(root->right), 0); //递归到叶子节点，然后开始回溯
+        int price = root->val + maxLeft + maxRight;
+        // maxSum和返回值的区别在哪？maxSum代表最大路径和，返回值仅代表到当前节点的贡献值
+        // maxSum包含两个子节点的贡献加本身，返回值仅包含自身和最大的子节点路径和
+        // maxSum还需要max是因为节点值还有可能为负的
+        maxSum = max(maxSum, price); //连续数字求最值,用{}
         //返回当前节点的贡献值
-        return root->val+max(maxLeft,maxRight);
+        return root->val + max(maxLeft, maxRight);
     }
     int maxPathSum(TreeNode *root)
     {
