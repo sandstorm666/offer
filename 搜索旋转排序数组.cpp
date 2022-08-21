@@ -99,6 +99,8 @@ public:
         return -1;
     }
 };
+/*通过中点值与开头的大小比较判断那段是肯定是有序数组，begin~mid,mid~end这两段
+中点值与结尾的大小比较也可以达到相同的结果*/
 class Solution
 {
 public:
@@ -110,31 +112,31 @@ public:
         if (n == 1)
             return (nums[0] == target ? 0 : -1);
         int l = 0, r = n - 1;
-        while (l<=r)
+        while (l <= r)
         {
-            int mid=(l+r)>>1;
-            if(nums[mid]==target)
+            int mid = (l + r) >> 1;
+            if (nums[mid] == target)
                 return mid;
-            if(nums[0]<=nums[mid])//中值大于起点，中值位于最小值左侧
+            if (nums[0] <= nums[mid]) //中值大于起点，中值位于最小值左侧
             {
-                if(nums[0]<=target&&nums[mid]>target)
+                if (nums[0] <= target && nums[mid] > target)
                 {
-                    r=mid-1;
+                    r = mid - 1;
                 }
                 else
                 {
-                    l=mid+1;
+                    l = mid + 1;
                 }
             }
-            else//中值小于起点，中值位于最小值右侧
+            else //中值小于起点，中值位于最小值右侧
             {
-                if(nums[mid]<=target&&nums[n-1]>target)//target可能在[mid+1,n-1]之间
+                if (nums[mid] <= target && nums[n - 1] > target) // target可能在[mid+1,n-1]之间
                 {
-                    l=mid+1;
+                    l = mid + 1;
                 }
                 else
                 {
-                    r=mid-1;
+                    r = mid - 1;
                 }
             }
         }
