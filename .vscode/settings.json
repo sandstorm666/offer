@@ -62,5 +62,6 @@
         "span": "cpp",
         "valarray": "cpp",
         "xtree": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

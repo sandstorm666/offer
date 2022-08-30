@@ -2,14 +2,16 @@
 #include <iostream>
 using namespace std;
 
-class MinStack {
+class MinStack
+{
 public:
     /** initialize your data structure here. */
-    MinStack():m(0) {
-
+    MinStack() : m(0)
+    {
     }
 
-    void push(int x) {
+    void push(int x)
+    {
         if (s.empty())
             m = x;
         s.push(x);
@@ -17,14 +19,15 @@ public:
             m = x;
     }
 
-    void pop() {
+    void pop()
+    {
         //判断是否是最小值被弹出了
         if (s.top() == m)
         {
             s.pop();
             //重新寻找最小值
 
-            m = top();//注意当栈中元素只有一个后，pop之后，会拿不到值，使用top要当心
+            m = top(); //注意当栈中元素只有一个后，pop之后，会拿不到值，使用top要当心
             stack<int> temp;
             while (!s.empty())
             {
@@ -47,8 +50,9 @@ public:
         }
     }
 
-    int top() {
-        if(!s.empty())
+    int top()
+    {
+        if (!s.empty())
             return s.top();
         else
         {
@@ -56,13 +60,14 @@ public:
         }
     }
 
-    int min() {
+    int min()
+    {
         return m;
     }
+
 private:
-    int m;//存储当前最小值
+    int m; //存储当前最小值
     stack<int> s;
-    
 };
 
 /**
