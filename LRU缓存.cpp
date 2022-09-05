@@ -8,6 +8,7 @@
 /*O(1)的时间复杂度，第一时间想到了哈希表。
 题目还要求一个类似队列的结构来记录访问的先后顺序
 哈希表+双向链表
+因为只需要访问
 head->node1->node2->tail
 */
 #include <unordered_map>
@@ -30,7 +31,7 @@ private:
     int size;
     //头尾的哨兵节点 dummy节点
     DListNode *head, *tail;
-    unordered_map<int, DListNode *> cache;
+    unordered_map<int, DListNode *> cache; // map的key=链表的key
 
 public:
     LRUCache(int _capacity) : capacity(_capacity), size(0)
@@ -75,7 +76,7 @@ public:
             moveToHead(node);
         }
     }
-    // 在头哨兵节点后面插入节点(要求节点是存在的)
+    // 将节点移动到哨兵节点后
     void addToHead(DListNode *node)
     {
         node->next = head->next;

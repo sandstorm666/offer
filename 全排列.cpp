@@ -18,7 +18,7 @@ public:
         for (size_t i = first; i < len; ++i)
         {
             //对first和i位置的交换，可以理解为循环用剩下的值填入到当前i的位置,考虑了所有的组合，且没有重复
-            swap(nums[i], nums[first]);
+            swap(nums[i], nums[first]);           // swap交换实现全排列！！！
             backTrack(ans, nums, first + 1, len); // first+1,位置+1，递归填下一个数
             swap(nums[first], nums[i]);           // 状态恢复
         }
